@@ -21,6 +21,12 @@ def gen_goal_agent(m):
         agent_position = random_cell_position(m)
     return goal_position, agent_position
 
+def create_readme(maze_size, search_methods, results):
+    with open('Readme.txt', 'w') as f:
+        for method, result in zip(search_methods, results):
+            depth, num_created, num_expanded, max_fringe = result
+            f.write(f'{maze_size} {method}: {depth}, {num_created}, {num_expanded}, {max_fringe}\n')
+
 def main():
     # Check if the correct number of arguments is provided
     """
@@ -98,6 +104,7 @@ def main():
         m.tracePath({millie: path2})
     else:
         print("No path found.")
+
     # Run the maze
     m.run()
 
